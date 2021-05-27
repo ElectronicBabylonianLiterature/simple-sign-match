@@ -10,6 +10,8 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "lodash": "^4.17.21",
+    "mongodb": "^3.6.9",
     "tslib": "^1"
   },
   "devDependencies": {
@@ -17,6 +19,7 @@
     "@oclif/test": "^1",
     "@types/chai": "^4",
     "@types/mocha": "^5",
+    "@types/mongodb": "^3.6.16",
     "@types/node": "^10",
     "chai": "^4",
     "eslint": "^5.13",

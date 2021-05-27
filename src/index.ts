@@ -1,28 +1,22 @@
 import {Command, flags} from '@oclif/command'
+import { searchAll } from './search'
 
 class SimpleSignMatch extends Command {
-  static description = 'describe the command here'
+  static description = 'Iterates over fragments and find matching chapters in the Corpus.'
 
   static flags = {
-    // add --version flag to show CLI version
     version: flags.version({char: 'v'}),
     help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
+    tls: flags.boolean({char: 't', default: false}),
+    skip: flags.integer({char: 's', default: 0}),
+    limit: flags.integer({char: 'l', default: 5}),
   }
 
-  static args = [{name: 'file'}]
+  static args = [{name: 'uri'}]
 
   async run() {
     const {args, flags} = this.parse(SimpleSignMatch)
-
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
-    }
+    await searchAll(args.uri, flags.tls, flags.skip, flags.limit)
   }
 }
 
